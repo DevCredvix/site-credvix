@@ -20,14 +20,15 @@
     
     <!-- Performance: Preload recursos críticos -->
     <link rel="preload" href="style.min.css" as="style">
-    <link rel="preload" href="/img/banner.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="img/banner.webp" as="image" fetchpriority="high" media="(min-width: 769px)">
+    <link rel="preload" href="img/banner-mobile.webp" as="image" fetchpriority="high" media="(max-width: 768px)">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
     <link rel="modulepreload" href="script/main.js">
     <link rel="modulepreload" href="script/components.js">
     <link rel="modulepreload" href="script/accessibility.js">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" sizes="any">
     
     <!-- CSS Crítico inline para First Paint -->
     <style>
