@@ -1,5 +1,5 @@
-// Importa o createClient da biblioteca do Supabase
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+// Importa o createClient da biblioteca do Supabase via CDN estável
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
 // Importa as nossas chaves do arquivo de configuração seguro
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
