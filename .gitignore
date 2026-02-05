@@ -1,8 +1,6 @@
 # Arquivos do VS Code
 .vscode/
 
-# Arquivo de configuração com chaves secretas
-script/config.js
-
+# Arquivos de documentação
 docs/
 .env.local
