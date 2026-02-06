@@ -1,3 +1,42 @@
+# Redirecionar HTTP para HTTPS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Forçar HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Forçar WWW ou não-WWW (escolha um)
+    # Para forçar www: descomente as 2 linhas abaixo
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Para forçar não-www: descomente as 2 linhas abaixo
+    # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    # RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Cabeçalhos de Segurança
+<IfModule mod_headers.c>
+    # HSTS - Force HTTPS por 1 ano (31536000 segundos)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+    
+    # Prevenir clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevenir MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
 # Compressão GZIP
 <IfModule mod_deflate.c>
     # Comprimir HTML, CSS, JavaScript, Text, XML e fontes
@@ -52,4 +91,7 @@
     <FilesMatch "\.(ttf|otf|woff|woff2)$">
         Header set Cache-Control "max-age=31536000, public, immutable"
     </FilesMatch>
+    
+    # Content Security Policy (CSP) - Ajuste conforme necessário
+    Header always set Content-Security-Policy "upgrade-insecure-requests"
 </IfModule>
