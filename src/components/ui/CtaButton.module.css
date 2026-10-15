@@ -1,0 +1,112 @@
+/* Reproducao em CSS do Button.svg, viewBox 211 x 48:
+ * capsula = 163 x 48, circulo = 48 x 48, gap = 0.
+ * Cor da borda SVG: #5B514B com 50% de opacidade.
+ * Icone: ArrowUpRight Lucide (32px com strokeWidth 1.5 => traco 2px).
+ */
+.cta {
+  --cta-label-bg: transparent;
+  --cta-label-fg: #5b514b;
+  --cta-label-border: rgb(91 81 75 / 50%);
+  --cta-circle-bg: #f99503;
+  --cta-circle-fg: #171411;
+
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.label {
+  display: inline-flex;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 163px;
+  height: 48px;
+  padding: 0 17px;
+  border: 1px solid var(--cta-label-border);
+  border-radius: 24px;
+  background: var(--cta-label-bg);
+  color: var(--cta-label-fg);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.015em;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.circle {
+  display: inline-flex;
+  box-sizing: border-box;
+  flex: 0 0 48px;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--cta-circle-bg);
+  color: var(--cta-circle-fg);
+  transition: filter 160ms ease;
+}
+
+.circle svg {
+  width: 32px;
+  height: 32px;
+}
+
+.cta:hover .circle {
+  filter: brightness(0.95);
+}
+
+.cta:focus-visible {
+  outline: 3px solid #c94f08;
+  outline-offset: 3px;
+}
+
+.cta:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.cta:disabled .circle {
+  filter: none;
+}
+
+.cta[data-compact="true"] .circle {
+  flex-basis: 48px;
+}
+
+.cta[data-variant="orange"] {
+  --cta-label-bg: #c94f08;
+  --cta-label-fg: #ffffff;
+  --cta-label-border: #c94f08;
+}
+
+.cta[data-variant="amber"] {
+  --cta-label-bg: #f99503;
+  --cta-label-fg: #171411;
+  --cta-label-border: #f99503;
+  --cta-circle-bg: #f99503;
+  --cta-circle-fg: #171411;
+}
+
+.cta[data-variant="dark"] {
+  --cta-label-bg: #171411;
+  --cta-label-fg: #ffffff;
+  --cta-label-border: #171411;
+  --cta-circle-bg: #ffffff;
+  --cta-circle-fg: #171411;
+}

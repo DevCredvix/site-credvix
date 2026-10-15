@@ -1,0 +1,214 @@
+/* Etapa 05 — Valores da Credvix.
+ * Conteúdo limitado pela mesma .cvx-shell da Hero, sem escapar das margens.
+ * A seção alterna o fundo branco da etapa 04 com o tom paper da marca.
+ */
+.section {
+  display: flex;
+  align-items: center;
+  min-height: clamp(620px, 77svh, 820px);
+  padding-block: clamp(76px, 9vh, 112px);
+  background: var(--cvx-paper);
+}
+
+.heading {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: var(--cvx-brand-700);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.135em;
+  line-height: 1.5;
+}
+
+.title {
+  margin: 0;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(32px, 3.65vw, 49px);
+  font-weight: 800;
+  letter-spacing: -0.062em;
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+.title span {
+  display: block;
+}
+
+.intro {
+  max-width: 640px;
+  margin: 20px auto 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.75vw, 22px);
+  margin-top: clamp(36px, 5vw, 64px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  min-height: clamp(290px, 25vw, 342px);
+  padding: clamp(26px, 2.5vw, 36px);
+  border: 1px solid var(--cvx-border);
+  border-radius: 18px;
+  background: var(--cvx-neutral-100);
+  color: var(--cvx-ink);
+}
+
+.number {
+  color: var(--cvx-neutral-300);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(49px, 5vw, 69px);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 1;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cardTitle {
+  max-width: 300px;
+  margin: 0;
+  color: inherit;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(17px, 1.55vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.052em;
+  line-height: 1.17;
+  text-wrap: pretty;
+}
+
+.cardDescription {
+  max-width: 320px;
+  margin: 15px 0 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(13px, 1.05vw, 14px);
+  line-height: 1.65;
+}
+
+.cardAccent {
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin-top: 22px;
+  border-radius: 2px;
+  background: var(--cvx-brand-500);
+}
+
+.featured {
+  border-color: var(--cvx-brand-700);
+  background: var(--cvx-brand-700);
+  box-shadow: 0 15px 34px rgb(201 79 8 / 9%);
+  color: #fff;
+}
+
+.featured .number {
+  color: #ffbf98;
+}
+
+.featured .cardDescription {
+  color: #fff;
+}
+
+.featured .cardAccent {
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .section {
+    min-height: auto;
+    padding-block: 80px;
+  }
+
+  .cards {
+    gap: 13px;
+  }
+
+  .card {
+    min-height: 310px;
+    padding: 23px;
+  }
+
+  .cardTitle {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 740px) {
+  .section {
+    padding-block: 66px 78px;
+  }
+
+  .title {
+    font-size: clamp(28px, 5.8vw, 38px);
+    line-height: 1.1;
+  }
+
+  .intro {
+    margin-top: 17px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 540px;
+    margin: 34px auto 0;
+  }
+
+  .card {
+    min-height: 236px;
+    padding: 28px;
+  }
+
+  .number {
+    font-size: 55px;
+  }
+
+  .cardTitle {
+    max-width: none;
+    font-size: 20px;
+  }
+
+  .cardDescription {
+    max-width: none;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 440px) {
+  .title {
+    font-size: clamp(26px, 7.6vw, 32px);
+  }
+
+  .eyebrow {
+    font-size: 11px;
+  }
+
+  .card {
+    min-height: 225px;
+    padding: 23px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+}

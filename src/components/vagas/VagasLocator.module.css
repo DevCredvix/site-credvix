@@ -1,0 +1,196 @@
+/* Localizador exclusivo da pagina Vagas. Nenhum dado ou card ficticio. */
+.section {
+  padding-block: clamp(74px, 7.5vw, 108px) clamp(76px, 8.5vw, 122px);
+  background: var(--cvx-surface);
+  scroll-margin-top: 24px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 700px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--cvx-brand-700);
+  font: 800 11px / 1.4 'Inter', sans-serif;
+  letter-spacing: 0.13em;
+}
+
+.title {
+  margin: 0;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(32px, 3.05vw, 46px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.063em;
+  text-wrap: balance;
+}
+
+.title span { display: block; }
+
+.subtitle {
+  max-width: 590px;
+  margin: 16px 0 0;
+  color: var(--cvx-neutral-600);
+  font: 400 14px / 1.75 'Inter', sans-serif;
+  text-wrap: balance;
+}
+
+.searchPanel {
+  box-sizing: border-box;
+  width: min(100%, 920px);
+  margin: 34px auto 0;
+  padding: 27px 26px 23px;
+  border: 1px solid var(--cvx-border);
+  border-radius: 20px;
+  background: var(--cvx-neutral-100, #f6f4f1);
+}
+
+.panelTitle {
+  margin: 0 0 18px;
+  color: var(--cvx-ink);
+  font: 800 16px / 1.4 'Montserrat', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.form { display: flex; flex-direction: column; }
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field { min-width: 0; }
+.field > label {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--cvx-ink);
+  font: 700 12px / 1.4 'Inter', sans-serif;
+}
+
+.control { position: relative; min-width: 0; }
+.control select,
+.control input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  padding: 0 36px;
+  border: 1px solid #e4dcd5;
+  border-radius: 10px;
+  outline-offset: 2px;
+  background: #fff;
+  color: var(--cvx-ink);
+  font: 500 13px / 1.4 'Inter', sans-serif;
+}
+
+.control select {
+  appearance: none;
+  padding-right: 33px;
+  cursor: pointer;
+}
+
+.control input::placeholder { color: #827a74; opacity: 1; }
+.control :is(select, input):hover { border-color: #c6b9ae; }
+.control :is(select, input):focus-visible {
+  outline: 3px solid var(--cvx-brand-700);
+  outline-offset: 2px;
+}
+
+.leftIcon, .rightIcon {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  color: #8a8078;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+.leftIcon { left: 12px; }
+.rightIcon { right: 12px; }
+
+.panelFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--cvx-border);
+}
+
+.clearButton, .resetButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #e4dcd5;
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--cvx-neutral-600);
+  font: 700 12px / 1.4 'Inter', sans-serif;
+  cursor: pointer;
+}
+.clearButton:hover, .resetButton:hover {
+  border-color: var(--cvx-brand-500);
+  color: var(--cvx-ink);
+}
+
+.prompt, .emptyResults {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 920px);
+  min-height: 168px;
+  margin: 20px auto 0;
+  padding: 26px 18px;
+  border: 1px dashed #e6ded8;
+  border-radius: 17px;
+  text-align: center;
+}
+
+.prompt > svg, .emptyResults > svg {
+  margin-bottom: 11px;
+  color: var(--cvx-brand-500);
+}
+.prompt h3, .emptyResults h3 {
+  margin: 0;
+  color: var(--cvx-ink);
+  font: 800 17px / 1.35 'Montserrat', sans-serif;
+  letter-spacing: -0.035em;
+}
+.prompt p, .emptyResults p {
+  max-width: 530px;
+  margin: 8px 0 0;
+  color: var(--cvx-neutral-600);
+  font: 400 13px / 1.65 'Inter', sans-serif;
+}
+.emptyResults { min-height: 218px; }
+.resetButton { margin-top: 18px; }
+
+@media (max-width: 900px) {
+  .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .field:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  .section { padding-block: 64px 90px; }
+  .title { font-size: clamp(29px, 6.7vw, 38px); }
+  .subtitle { font-size: 13px; }
+  .searchPanel { margin-top: 28px; padding: 22px 18px; }
+  .filters { grid-template-columns: minmax(0, 1fr); gap: 17px; }
+  .control select, .control input { font-size: 16px; }
+  .field:last-child { grid-column: auto; }
+  .prompt, .emptyResults { min-height: 180px; }
+}

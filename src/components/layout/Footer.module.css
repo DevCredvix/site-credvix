@@ -1,0 +1,260 @@
+/* Footer exclusivo: segue a mesma caixa visual da Hero (.cvx-shell).
+ * Nenhuma regra aqui altera Header, Home ou outros componentes.
+ */
+.footer {
+  width: 100%;
+  background: var(--cvx-surface);
+  padding-block: clamp(58px, 6vw, 86px) 26px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.35fr) minmax(120px, .75fr) minmax(142px, .85fr) minmax(198px, 1fr);
+  gap: clamp(28px, 4.5vw, 70px);
+  align-items: start;
+}
+
+.brandColumn,
+.linkColumn,
+.contactColumn {
+  min-width: 0;
+}
+
+.brandLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 100%;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.credvixLogo,
+.helpLogo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  flex: 0 1 auto;
+}
+
+.credvixLogo {
+  height: 28px;
+}
+
+.helpLogo {
+  height: 32px;
+}
+
+.brandDescription {
+  max-width: 285px;
+  margin: 24px 0 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--cvx-border);
+  border-radius: 9999px;
+  background: var(--cvx-surface);
+  color: var(--cvx-neutral-600);
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.socialLink svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+}
+
+.socialLink:hover {
+  color: var(--cvx-brand-700);
+  border-color: var(--cvx-neutral-300);
+  background: var(--cvx-paper);
+}
+
+.columnTitle {
+  margin: 5px 0 22px;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link,
+.contactNote,
+.unitsLink {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.link {
+  display: inline-block;
+  color: var(--cvx-neutral-600);
+  text-decoration: none;
+  text-underline-offset: 4px;
+  transition: color 160ms ease;
+}
+
+.link:hover,
+.unitsLink:hover {
+  color: var(--cvx-brand-700);
+  text-decoration: underline;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  font-style: normal;
+}
+
+.contactNote {
+  max-width: 235px;
+  margin: 20px 0 8px;
+  color: var(--cvx-neutral-600);
+}
+
+.unitsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--cvx-neutral-600);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.legal {
+  margin-top: clamp(50px, 6vw, 76px);
+  border-top: 1px solid var(--cvx-border);
+}
+
+.disclaimer {
+  margin: 0;
+  padding-block: 24px;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--cvx-border);
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1020px) {
+  .columns {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    gap: 46px 42px;
+  }
+
+  .contactColumn {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .linkColumn {
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding-block: 56px 24px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 24px;
+  }
+
+  .brandColumn,
+  .contactColumn {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .linkColumn {
+    grid-row: auto;
+  }
+
+  .columnTitle {
+    margin-bottom: 18px;
+  }
+
+  .brandDescription {
+    max-width: 310px;
+    margin-top: 20px;
+  }
+
+  .linkList {
+    gap: 14px;
+  }
+
+  .legal {
+    margin-top: 50px;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+  }
+
+  .bottomBar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .brandLink {
+    gap: 12px;
+  }
+
+  .credvixLogo {
+    height: 24px;
+  }
+
+  .helpLogo {
+    height: 29px;
+  }
+}
