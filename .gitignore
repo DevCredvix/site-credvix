@@ -1,6 +1,10 @@
-# Arquivos do VS Code
-.vscode/
-
-# Arquivos de documentação
-docs/
-.env.local
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

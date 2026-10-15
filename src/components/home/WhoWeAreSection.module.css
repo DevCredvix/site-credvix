@@ -1,0 +1,192 @@
+/* Seção 01 da Home: composição em três blocos, com a mesma caixa visual
+ * horizontal inaugurada pela Hero. A fotografia usa object-fit: cover,
+ * preservando o enquadramento sem distorção.
+ */
+.section {
+  background: var(--cvx-paper);
+  padding-block: clamp(56px, 8vw, 92px) clamp(78px, 9vw, 110px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.08fr) minmax(104px, 0.28fr) minmax(360px, 1fr);
+  align-items: center;
+  gap: clamp(22px, 3vw, 42px);
+}
+
+.photoFrame {
+  margin: 0;
+  aspect-ratio: 1.05 / 0.88;
+  min-height: 350px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #e8edf2;
+  box-shadow: 0 18px 60px rgba(23, 20, 17, 0.06);
+}
+
+.photoFrame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.brandMark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandMark img {
+  display: block;
+  width: min(100%, 176px);
+  height: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(34px, 3.2vw, 52px);
+  font-weight: 800;
+  line-height: 0.97;
+  letter-spacing: -0.068em;
+  text-wrap: balance;
+}
+
+.title span {
+  display: block;
+}
+
+.description {
+  max-width: 500px;
+  margin: 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.missionCard {
+  max-width: 520px;
+  margin-top: 6px;
+  padding: 26px 28px 24px;
+  border: 1px solid rgba(91, 81, 75, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--cvx-brand-700);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.missionTitle {
+  margin: 0;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(19px, 1.58vw, 24px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.missionText {
+  margin: 14px 0 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1180px) {
+  .grid {
+    grid-template-columns: minmax(320px, 1fr) minmax(84px, 0.22fr) minmax(320px, 0.94fr);
+    gap: 26px;
+  }
+
+  .title {
+    font-size: clamp(31px, 4vw, 42px);
+  }
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .photoFrame {
+    order: 1;
+    aspect-ratio: 1.16 / 0.9;
+    min-height: 0;
+  }
+
+  .brandMark {
+    order: 2;
+  }
+
+  .brandMark img {
+    width: min(100%, 146px);
+  }
+
+  .content {
+    order: 3;
+    max-width: 660px;
+  }
+
+  .description,
+  .missionCard {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-block: 44px 76px;
+  }
+
+  .grid {
+    gap: 24px;
+  }
+
+  .photoFrame {
+    border-radius: 22px;
+    aspect-ratio: 1.08 / 1;
+  }
+
+  .title {
+    font-size: clamp(29px, 9vw, 38px);
+    line-height: 1.02;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .missionCard {
+    padding: 22px 20px;
+    border-radius: 18px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+  }
+
+  .missionTitle {
+    font-size: 18px;
+  }
+}

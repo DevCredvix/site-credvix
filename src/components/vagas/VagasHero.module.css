@@ -1,0 +1,176 @@
+/* Hero exclusiva da pagina Vagas.
+ * A arte da modelo agora e uma camada de background, limitada ao lado direito.
+ * O texto ocupa uma area reservada do lado esquerdo: a arte nunca passa por tras dele.
+ * A largura externa continua sendo definida pela .cvx-shell global.
+ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--cvx-paper);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: clamp(540px, calc(100svh - 104px), 780px);
+  margin-inline: auto;
+}
+
+/* Imagem de fundo decorativa, sem <img> ocupando espaco no layout.
+ * background-size: contain adapta a arte ao ESPACO e a ALTURA da Hero,
+ * sem distorcer nem invadir a metade destinada ao letreiro.
+ */
+.container::before {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 49%;
+  background-image: url('/vagas/marca-modelo-2.svg');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  content: '';
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 51%;
+  max-width: 51%;
+  min-width: 0;
+  padding-block: 72px 98px;
+}
+
+.title {
+  margin: 0;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(44px, 3.8vw, 54px);
+  font-weight: 800;
+  line-height: 1.035;
+  letter-spacing: -0.073em;
+}
+
+.title > span {
+  display: block;
+}
+
+.title strong {
+  color: var(--cvx-brand-amber);
+  font-weight: inherit;
+}
+
+.description {
+  max-width: 470px;
+  margin: 30px 0 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 27px;
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 455px;
+  margin: 0;
+  color: var(--cvx-brand-700);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.hint svg {
+  flex: 0 0 auto;
+  color: var(--cvx-brand-amber);
+}
+
+@media (min-width: 1600px) {
+  .container {
+    min-height: clamp(650px, calc(100svh - 104px), 820px);
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  .title {
+    font-size: clamp(36px, 3.7vw, 45px);
+  }
+
+  .description {
+    max-width: 405px;
+    font-size: 14px;
+  }
+}
+
+/* Tablet/mobile: removemos por completo a ilustracao do background.
+ * A Hero vira uma secao apenas tipografica, sem area vazia reservada a arte.
+ */
+@media (max-width: 1140px) {
+  .container {
+    min-height: 0;
+  }
+
+  .container::before {
+    display: none;
+  }
+
+  .content {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding-block: 62px 72px;
+  }
+
+  .title {
+    max-width: 710px;
+    font-size: clamp(38px, 6.3vw, 59px);
+  }
+
+  .description {
+    max-width: 590px;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding-block: 47px 65px;
+  }
+
+  .title {
+    font-size: clamp(30px, 8.2vw, 48px);
+    line-height: 1.075;
+    letter-spacing: -0.065em;
+    overflow-wrap: anywhere;
+  }
+
+  .description {
+    margin-top: 25px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .actions {
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .hint {
+    font-size: 12px;
+  }
+}

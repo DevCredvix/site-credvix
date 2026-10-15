@@ -1,0 +1,134 @@
+/* Hero exclusiva do Canal de Integridade — Credvix V2.
+ * Arte original como BACKGROUND decorativo do lado direito, como na Home.
+ * A caixa horizontal da página continua sendo definida por .cvx-shell.
+ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--cvx-paper);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: clamp(540px, 67svh, 710px);
+}
+
+/* O SVG já inclui o escudo e os cards flutuantes.
+ * Sem <img> no fluxo, não altera o espaço reservado ao título. */
+.container::before {
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  right: 0;
+  width: 53%;
+  background-image: url('/integridade/escudo-arte.svg');
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: '';
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 49%;
+  max-width: 49%;
+  min-width: 0;
+  padding-block: 74px 92px;
+}
+
+.title {
+  margin: 0;
+  color: var(--cvx-ink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(43px, 3.95vw, 58px);
+  font-weight: 800;
+  line-height: 1.01;
+  letter-spacing: -0.071em;
+}
+
+.title > span { display: block; }
+
+.title strong {
+  color: var(--cvx-brand-amber);
+  font-weight: inherit;
+}
+
+.description {
+  max-width: 460px;
+  margin: 28px 0 0;
+  color: var(--cvx-neutral-600);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.72;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: var(--cvx-brand-700);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.hint svg {
+  flex: 0 0 auto;
+  color: var(--cvx-brand-amber);
+}
+
+@media (min-width: 1600px) {
+  .container { min-height: clamp(650px, 67svh, 780px); }
+}
+
+/* Protege o texto em notebooks de pouco mais de 1140px. */
+@media (min-width: 1141px) and (max-width: 1279px) {
+  .title { font-size: clamp(39px, 3.8vw, 48px); }
+  .description { max-width: 420px; font-size: 14px; }
+}
+
+/* Mesmo ponto de quebra já aprovado nas Heroes da Home e Vagas. */
+@media (max-width: 1140px) {
+  .container { min-height: 0; }
+  .container::before { display: none; }
+  .content {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding-block: 64px 78px;
+  }
+  .title {
+    max-width: 760px;
+    font-size: clamp(40px, 6.3vw, 59px);
+  }
+  .description { max-width: 585px; }
+}
+
+@media (max-width: 600px) {
+  .content { padding-block: 48px 66px; }
+  .title {
+    font-size: clamp(32px, 8.3vw, 46px);
+    line-height: 1.075;
+    letter-spacing: -0.065em;
+    overflow-wrap: anywhere;
+  }
+  .description { margin-top: 23px; font-size: 14px; line-height: 1.7; }
+  .actions { margin-top: 25px; gap: 20px; }
+  .hint { font-size: 12px; }
+}
