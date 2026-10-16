@@ -1,11 +1,12 @@
 import { useState, type ChangeEvent } from 'react'
-import { AlertCircle, ClipboardCopy, Download, FileText, Paperclip, ShieldCheck, X } from 'lucide-react'
+import { AlertCircle, FileText, Paperclip, ShieldCheck, X } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { CtaButton } from '../ui/CtaButton'
-import { enviarRelato } from '../../services/integridadeApi'
+import { anexosDisponiveis, enviarEvidencia, registrarRelato } from '../../services/integridadeApi'
 import styles from './IntegridadeRelatoForm.module.css'
+import { IntegridadeSucessoModal } from './IntegridadeSucessoModal'
 
 const categories = [
   { title: 'Assédio moral', description: 'Humilhação, perseguição ou intimidação.' },
@@ -54,14 +55,17 @@ function formatBytes(bytes: number) {
 }
 
 /**
- * Componente exclusivo do Canal de Integridade e renderizado somente após clique.
- * Sem integração de anexos habilitada: arquivos nunca são silenciosamente descartados.
+ * Formulario nativo da V2 usando o mesmo backend e Storage assinados
+ * do projeto Dev-CredVix/canal-integridade.
  */
 export function IntegridadeRelatoForm() {
   const [files, setFiles] = useState<File[]>([])
   const [attachmentError, setAttachmentError] = useState('')
   const [submissionError, setSubmissionError] = useState('')
   const [accessCode, setAccessCode] = useState('')
+  const [uploadState, setUploadState] = useState<{
+    total: number; uploaded: number; failed: string[]; inProgress: boolean
+  } | null>(null)
 
   const { register, watch, handleSubmit, formState: { errors, isSubmitting } } = useForm<ReportFormData>({
     resolver: zodResolver(reportSchema),
@@ -96,16 +100,17 @@ export function IntegridadeRelatoForm() {
 
   async function submit(values: ReportFormData) {
     setSubmissionError('')
-    if (files.length > 0) {
-      setSubmissionError('O envio de anexos ainda está em homologação. Nenhum arquivo será enviado nesta versão. Para continuar sem evidências, remova os arquivos selecionados.')
+    if (!integrationEnabled) {
+      setSubmissionError('O formulário ainda não foi configurado para receber relatos neste ambiente.')
       return
     }
-    if (!integrationEnabled) {
-      setSubmissionError('O formulário está em homologação. O recebimento real de relatos ainda não está habilitado neste ambiente.')
+    // Valida as credenciais de Storage ANTES de criar o relato, evitando anexos perdidos.
+    if (files.length > 0 && !anexosDisponiveis) {
+      setSubmissionError('O envio de anexos ainda não foi configurado. Tente novamente mais tarde.')
       return
     }
     try {
-      const code = await enviarRelato({
+      const result = await registrarRelato({
         category: values.category,
         description: values.description,
         unit: values.unit,
@@ -116,49 +121,29 @@ export function IntegridadeRelatoForm() {
         email: values.identity === 'identified' ? values.email : '',
         website: values.website,
       })
-      setAccessCode(code)
+      // Mostra o codigo imediatamente: o relato ja esta persistido mesmo
+      // se um upload posterior falhar. Nunca incentiva reenviar o relato.
+      setAccessCode(result.code)
+      if (files.length > 0) {
+        setUploadState({ total: files.length, uploaded: 0, failed: [], inProgress: true })
+        let uploaded = 0
+        const failed: string[] = []
+        for (const file of files) {
+          try { await enviarEvidencia(result.code, file); uploaded += 1 }
+          catch { failed.push(file.name) }
+          setUploadState({ total: files.length, uploaded, failed: [...failed], inProgress: true })
+        }
+        setUploadState({ total: files.length, uploaded, failed, inProgress: false })
+      }
     } catch (error) {
       setSubmissionError(error instanceof Error ? error.message : 'Não foi possível registrar o relato.')
     }
   }
 
-  async function copyCode() {
-    try { await navigator.clipboard.writeText(accessCode) }
-    catch { /* O código continua visível para cópia manual. */ }
-  }
-
-  function downloadCode() {
-    const blob = new Blob([
-      `Canal de Integridade Credvix\n\nCódigo de acompanhamento:\n${accessCode}\n\nGuarde este arquivo em local privado.`,
-    ], { type: 'text/plain;charset=utf-8' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'codigo-de-acompanhamento-credvix.txt'
-    link.click()
-    URL.revokeObjectURL(url)
-  }
-
+  // Após persistir o relato, o formulário sai do DOM. A confirmação é exibida
+  // em um modal acessível montado no <body> — o código nunca vai para a URL.
   if (accessCode) {
-    return (
-      <div className={styles.formCard} role="status" aria-live="polite">
-        <div className={styles.success}>
-          <ShieldCheck size={44} strokeWidth={1.7} aria-hidden="true" />
-          <p className={styles.eyebrow}>RELATO REGISTRADO</p>
-          <h3>Seu relato foi recebido.</h3>
-          <p>Guarde o código abaixo: ele permite acompanhar seu relato sem criar uma conta.</p>
-          <div className={styles.codeBlock}>
-            <span>Código de acompanhamento</span>
-            <code>{accessCode}</code>
-          </div>
-          <div className={styles.successActions}>
-            <button type="button" onClick={copyCode}><ClipboardCopy size={18} aria-hidden="true" /> Copiar código</button>
-            <button type="button" onClick={downloadCode}><Download size={18} aria-hidden="true" /> Salvar em arquivo</button>
-          </div>
-          <p className={styles.hint}>Por segurança, não há recuperação automática do código. Salve-o antes de sair.</p>
-        </div>
-      </div>
-    )
+    return <IntegridadeSucessoModal accessCode={accessCode} uploadState={uploadState} />
   }
 
   return (
@@ -257,7 +242,7 @@ export function IntegridadeRelatoForm() {
             </div>
           )}
           {attachmentError && <p className={styles.error} role="alert">{attachmentError}</p>}
-          <p className={styles.fileNote}>O envio de anexos depende da integração final com o canal original.</p>
+          <p className={styles.fileNote}>Os arquivos são enviados após o registro do relato e vinculados ao código de acompanhamento. Aguarde a conclusão dos anexos antes de fechar esta página.</p>
         </section>
 
         <fieldset className={styles.sectionBlock}>

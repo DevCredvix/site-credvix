@@ -1,0 +1,91 @@
+.card {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 194px;
+  padding: 23px 22px;
+  border: 1px solid var(--cvx-border, #eee8e3);
+  border-radius: 17px;
+  background: var(--cvx-surface, #fff);
+  box-shadow: 0 8px 22px rgb(23 20 17 / 4%);
+  color: var(--cvx-ink, #171411);
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+.card:hover {
+  border-color: #dfbda7;
+  box-shadow: 0 12px 29px rgb(23 20 17 / 9%);
+  transform: translateY(-2px);
+}
+.card:focus-visible {
+  outline: 3px solid var(--cvx-brand-700, #c94f08);
+  outline-offset: 3px;
+}
+.card[data-selected='true'] { border-color: var(--cvx-brand-700, #c94f08); }
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 9px;
+  min-height: 49px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid var(--cvx-neutral-300, #ded5cf);
+}
+.title {
+  min-width: 0;
+  margin: 0;
+  color: var(--cvx-ink, #171411);
+  font: 800 clamp(15px, 1.5vw, 18px)/1.28 'Montserrat', sans-serif;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+.badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border: 1px solid var(--cvx-border, #eee8e3);
+  border-radius: 999px;
+  background: #faf9f8;
+  color: var(--cvx-ink, #171411);
+  font: 700 11px/1.25 'Inter', sans-serif;
+  white-space: nowrap;
+}
+.badge[data-status='in_review'] {
+  background: #fff5eb;
+  border-color: #f2e3d9;
+  color: #9e3f07;
+}
+.badge[data-status='closed'] {
+  border-color: #c94f08;
+  background: var(--cvx-brand-700, #c94f08);
+  color: #fff;
+}
+.details { display: grid; gap: 11px; padding-top: 17px; }
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  color: var(--cvx-neutral-600, #5b514b);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.detail svg { flex: 0 0 20px; color: var(--cvx-brand-700, #c94f08); }
+.detail span { min-width: 0; overflow-wrap: anywhere; }
+.unit { color: var(--cvx-ink, #171411); font-weight: 650; }
+.protocol { font-weight: 650; }
+@media (max-width: 600px) {
+  .card { min-height: 185px; padding: 20px; }
+  .title { font-size: 17px; }
+  .badge { padding: 6px 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+  .card:hover { transform: none; }
+}

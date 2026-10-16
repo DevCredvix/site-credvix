@@ -1,0 +1,25 @@
+.uploadProgress {
+  width: 100%; max-width: 640px; margin: 12px 0;
+  padding: 12px 16px; border-radius: 10px;
+  background: #fff3e7; color: #743c2c;
+  font: 650 12px/1.6 'Inter', sans-serif;
+}
+.uploadWarning {
+  width: 100%; max-width: 640px; margin: 12px 0;
+  padding: 12px 16px; border-radius: 10px;
+  border: 1px solid #f0c8c3; background: #fff4f1; color: #9b281a;
+  overflow-wrap: anywhere; font: 650 12px/1.65 'Inter', sans-serif;
+}
+.uploadSuccess {
+  width: 100%; max-width: 640px; margin: 12px 0;
+  padding: 12px 16px; border-radius: 10px;
+  background: #edf6ee; color: #32613c;
+  font: 650 12px/1.65 'Inter', sans-serif;
+}
+.followLink {
+  display: inline-flex; align-items: center; min-height: 42px;
+  padding: 12px 16px; border: 1px solid #ded5cf; border-radius: 999px;
+  background: #fff8f0; color: #ad4408; text-decoration: none;
+  font: 750 12px/1.3 'Inter', sans-serif;
+}
+.followLink:hover { background: #ffebd9; }

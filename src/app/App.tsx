@@ -7,7 +7,9 @@ import HomePage from '../pages/HomePage'
 // Demais paginas carregam sob demanda (code splitting).
 const LojasPage = lazy(() => import('../pages/LojasPage'))
 const VagasPage = lazy(() => import('../pages/VagasPage'))
+const IntegridadeAdminPage = lazy(() => import('../pages/IntegridadeAdminPage'))
 const CanalIntegridadePage = lazy(() => import('../pages/CanalIntegridadePage'))
+const AcompanharIntegridadePage = lazy(() => import('../pages/AcompanharIntegridadePage'))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'))
 
 function RouteFallback() {
@@ -26,9 +28,9 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/lojas" element={<LojasPage />} />
           <Route path="/vagas" element={<VagasPage />} />
+          <Route path="/admin" element={<IntegridadeAdminPage />} />
           <Route path="/canal-de-integridade" element={<CanalIntegridadePage />} />
-          {/* Acompanhamento desativado temporariamente. */}
-          <Route path="/canal-de-integridade/acompanhar" element={<Navigate to="/canal-de-integridade" replace />} />
+          <Route path="/canal-de-integridade/acompanhar" element={<AcompanharIntegridadePage />} />
           {/* Compatibilidade de navegacao interna; 301 HTTP sera definida no lancamento. */}
           <Route path="/index.html" element={<Navigate to="/" replace />} />
           <Route path="/lojas.html" element={<Navigate to="/lojas" replace />} />

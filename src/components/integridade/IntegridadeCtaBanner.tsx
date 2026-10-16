@@ -36,8 +36,7 @@ export function IntegridadeCtaBanner() {
 
           <div className={styles.action}>
             <CtaButton
-              type="button"
-              onClick={() => {}}
+              to="/canal-de-integridade/acompanhar"
               label="Acompanhar relato"
               variant="dark"
             />
