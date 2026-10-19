@@ -120,7 +120,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px 24px;
   margin-top: 20px;
   padding-top: 18px;
   border-top: 1px solid var(--cvx-border);
@@ -193,4 +193,20 @@
   .control select, .control input { font-size: 16px; }
   .field:last-child { grid-column: auto; }
   .prompt, .emptyResults { min-height: 180px; }
+}
+
+/* CTAs de listagem e cadastro no banco de talentos da Solides. */
+.panelMainActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  min-width: 0;
+}
+
+.prompt p strong { color: inherit; font-weight: 700; }
+
+@media (max-width: 640px) {
+  .panelFooter { flex-direction: column; align-items: stretch; }
+  .panelMainActions { justify-content: space-between; }
 }

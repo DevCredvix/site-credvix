@@ -8,3 +8,8 @@ dist/
 Thumbs.db
 .vscode/*
 !.vscode/extensions.json
+
+# Sincronizacao de vagas via Python / navegador
+__pycache__/
+*.py[cod]
+scripts/debug-solides.png

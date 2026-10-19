@@ -35,7 +35,9 @@ export function VagasCtaBanner() {
 
           <div className={styles.action}>
             <CtaButton
-              to="/vagas#oportunidades"
+              href="https://credvix.vagas.solides.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
               label="Ver todas as vagas"
               variant="dark"
             />
