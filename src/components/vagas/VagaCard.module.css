@@ -11,16 +11,6 @@
   color: var(--cvx-ink);
   text-decoration: none;
   box-shadow: 0 4px 14px rgb(23 20 17 / 3%);
-  transition: box-shadow 170ms ease, transform 170ms ease, border-color 170ms ease;
-}
-.card:hover {
-  border-color: #e9d4c4;
-  box-shadow: 0 10px 25px rgb(23 20 17 / 9%);
-  transform: translateY(-2px);
-}
-.card:focus-visible {
-  outline: 3px solid var(--cvx-brand-700);
-  outline-offset: 4px;
 }
 .topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .open {
@@ -76,6 +66,21 @@
   padding-top: 16px;
   border-top: 1px solid var(--cvx-border);
 }
+.ctaLink {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  gap: 0;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.ctaLink:focus-visible {
+  outline: 3px solid var(--cvx-brand-700);
+  outline-offset: 4px;
+}
 .ctaLabel, .ctaCircle {
   display: inline-flex;
   box-sizing: border-box;
@@ -96,10 +101,9 @@
 }
 .ctaLabel svg { flex: 0 0 21px; }
 .ctaCircle { flex: 0 0 48px; width: 48px; border-radius: 50%; }
-.card:hover :is(.ctaLabel, .ctaCircle) { background: #f08b00; }
+.ctaLink:hover :is(.ctaLabel, .ctaCircle), .ctaLink:focus-visible :is(.ctaLabel, .ctaCircle) { background: #f08b00; }
 @media (prefers-reduced-motion: reduce) {
-  .card, .ctaLabel, .ctaCircle { transition: none; }
-  .card:hover { transform: none; }
+  .ctaLabel, .ctaCircle { transition: none; }
 }
 @media (max-width: 640px) {
   .card { min-height: 310px; padding: 21px 20px 19px; }

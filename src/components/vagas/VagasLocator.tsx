@@ -136,7 +136,7 @@ export function VagasLocator() {
                 )}
               </div>
               <CtaButton
-                href="https://credvix.vagas.solides.com.br/#banco-de-talentos"
+                href="https://auth.vagas.solides.com.br/sign-in"
                 target="_blank"
                 rel="noopener noreferrer"
                 label="Banco de talentos"
