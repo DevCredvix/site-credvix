@@ -1,8 +1,3 @@
-/**
- * O portal de vagas da Sólides e a UNICA fonte de oportunidades.
- * Este manifesto e gerado exclusivamente pelo sincronizador autorizado.
- * Se o manifesto estiver ausente, invalido ou desatualizado, nao exibimos vagas.
- */
 export type VagaSolides = {
   id: string
   url: string
@@ -16,7 +11,6 @@ export type VagaSolides = {
 }
 
 export const SOLIDES_PORTAL = 'https://credvix.vagas.solides.com.br/'
-const FRESHNESS_MS = 18 * 60 * 60 * 1000
 const VALID_STATES = new Set([
   'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
   'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
@@ -63,9 +57,9 @@ export function validarManifestoVagas(raw: unknown, agora = Date.now()): VagaSol
     throw new VagasNaoConfirmadasError()
   }
   const verificadoEm = Date.parse(raw.verifiedAt)
-  if (!Number.isFinite(verificadoEm) || verificadoEm > agora + 2 * 60_000 || agora - verificadoEm > FRESHNESS_MS) {
-    throw new VagasNaoConfirmadasError()
-  }
+  if (!Number.isFinite(verificadoEm) || verificadoEm > agora + 2 * 60_000) {
+  throw new VagasNaoConfirmadasError()
+}
   const ids = new Set<string>()
   const result: VagaSolides[] = []
   for (const item of raw.jobs) {
