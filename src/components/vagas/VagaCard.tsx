@@ -1,4 +1,4 @@
-import { ArrowUpRight, BriefcaseBusiness, CircleDollarSign, Clock3, MapPin } from 'lucide-react'
+import { ArrowUpRight, BriefcaseBusiness, Clock3, MapPin } from 'lucide-react'
 import type { VagaSolides } from '../../services/vagasSolides'
 import styles from './VagaCard.module.css'
 
@@ -29,12 +29,6 @@ export function VagaCard({ vaga }: Props) {
           <div className={styles.detail}>
             <MapPin size={18} strokeWidth={1.9} aria-hidden="true" />
             <span>{vaga.location}</span>
-          </div>
-        )}
-        {vaga.salary && (
-          <div className={styles.detail}>
-            <CircleDollarSign size={18} strokeWidth={1.9} aria-hidden="true" />
-            <span>{vaga.salary}</span>
           </div>
         )}
         {vaga.postedLabel && (
